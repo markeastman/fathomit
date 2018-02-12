@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      class="layout-pf layout-pf-fixed">
+
+<head>
+    <title>Admin Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="../../static/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+    <!-- PatternFly Styles -->
+    <link href="../css/patternfly.min.css" rel="stylesheet" media="screen, print"/>
+    <link href="../css/patternfly-additions.min.css" rel="stylesheet" media="screen, print"/>
+
+</head>
+<body>
+<nav class="navbar navbar-pf-vertical">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/app/home" class="navbar-brand">
+            <img class="navbar-brand-icon" src="../img/logo-alt.svg" alt=""/><img class="navbar-brand-name" src="../img/brand-alt.svg" alt="PatternFly Enterprise Application" />
+        </a>
+    </div>
+</nav>
+<div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content about-modal-pf">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="pficon pficon-close"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Admin Dashboard</h1>
+                <div class="product-versions-pf">
+                    <ul class="list-unstyled">
+                        <li><strong>Main Product</strong> Version 1.0</li>
+                    </ul>
+                </div>
+                <div class="trademark-pf">
+                    Trademark and Copyright Information
+                </div>
+            </div>
+            <div class="modal-footer">
+                <img src="../img/logo-alt.svg" alt="Patternfly Symbol"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="leftmenu">
+    <div class="nav-pf-vertical nav-pf-vertical-with-sub-menus hide-nav-pf">
+        <ul class="list-group">
+            <li class="list-group-item" id="metrics-menu" >
+                <a href="home">
+                    <span class="fa fa-dashboard" data-toggle="tooltip" title="Metrics"></span>
+                    <span class="list-group-item-value">Metrics</span>
+                </a>
+            </li>
+            <!--li class="list-group-item" id="form-menu">
+                <a href="form">
+                    <span class="fa fa-shield" data-toggle="tooltip" title="Dolor"></span>
+                    <span class="list-group-item-value">Form Entry</span>
+                </a>
+            </li>
+            <li class="list-group-item secondary-nav-item-pf" id="tasks-menu">
+                <a>
+                    <span class="fa fa-space-shuttle" data-toggle="tooltip" title="Ipsum"></span>
+                    <span class="list-group-item-value">Tasks</span>
+                </a>
+
+                <div id="-secondary" class="nav-pf-secondary-nav">
+                    <div class="nav-item-pf-header">
+                        <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+                        <span>Tasks</span>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" id="tasks-processes-menu">
+                            <a href="processes">
+                                <span class="list-group-item-value">Processes</span>
+                            </a>
+
+                        </li>
+                        <li class="list-group-item " id="tasks-jobs-menu">
+                            <a href="jobs">
+                                <span class="list-group-item-value">Jobs</span>
+                            </a>
+
+                        </li>
+                        <li class="list-group-item " id="tasks-whatnots-menu">
+                            <a>
+                                <span class="list-group-item-value">What-Nots</span>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </li>
+            <li class="list-group-item secondary-nav-item-pf" data-target="#amet-secondary">
+                <a>
+                    <span class="fa fa-paper-plane" data-toggle="tooltip" title="Amet"></span>
+                    <span class="list-group-item-value">Amet</span>
+                </a>
+
+                <div id="amet-secondary" class="nav-pf-secondary-nav">
+                    <div class="nav-item-pf-header">
+                        <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+                        <span>Amet</span>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item " data-target="#amet-detracto-tertiary">
+                            <a>
+                                <span class="list-group-item-value">Detracto</span>
+
+
+
+                            </a>
+
+                        </li>
+                        <li class="list-group-item " data-target="#amet-mediocrem-tertiary">
+                            <a>
+                                <span class="list-group-item-value">Mediocrem</span>
+
+
+
+                            </a>
+
+                        </li>
+                        <li class="list-group-item " data-target="#amet-corrumpit-tertiary">
+                            <a>
+                                <span class="list-group-item-value">Corrumpit</span>
+
+
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </li>
+            <li class="list-group-item">
+                <a>
+                    <span class="fa fa-graduation-cap" data-toggle="tooltip" title="Adipscing"></span>
+                    <span class="list-group-item-value">Adipscing</span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a>
+                    <span class="fa fa-gamepad" data-toggle="tooltip" title="Administration"></span>
+                    <span class="list-group-item-value">Administration</span>
+                </a>
+            </li-->
+        </ul>
+    </div>
+</div>
+<div class="container-fluid container-cards-pf container-pf-nav-pf-vertical">
+    <div layout:fragment="content">
+        <p>Content goes here...</p>
+    </div>
+</div>
+<!-- Bootstrap -->
+<script src="../js/bootstrap.min.js"></script>
+<!-- PatternFly -->
+<script src="../js/patternfly.min.js"></script>
+<!-- match height -->
+<script src="../js/jquery.matchHeight-min.js"></script>
+
+<script src="../js/dashboard.js"></script>
+</body>
+</html>
